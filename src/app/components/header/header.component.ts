@@ -43,7 +43,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
   downloadResume() {
     // Create a temporary link element to trigger download
     const link = document.createElement('a');
-    link.href = 'assets/resume/vikrant__resume.pdf'; // You'll need to add your resume PDF to assets/resume/
+    link.href = 'assets/resume/vikrant_resume_NITK.pdf'; // You'll need to add your resume PDF to assets/resume/
     link.download = 'Vikrant_NITK_Resume.pdf';
     link.target = '_blank';
     document.body.appendChild(link);

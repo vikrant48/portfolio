@@ -11,11 +11,27 @@
         </p>
       </div>
 
+      <!-- Resume Preview Section -->
+      <div class="mt-16 animate-fade-in-up animate-delay-500">
+        <h3 class="text-2xl font-bold text-slate-100 mb-8 flex items-center justify-center cursor-pointer" (click)="openResumeModal()">
+          <span class="w-8 h-8 bg-purple-500 rounded-full flex items-center justify-center text-white mr-3 ">
+            <i class="fas fa-eye"></i> 
+          </span>
+          Click to Preview Resume
+        </h3>
+        
+        <!-- <div class="bg-slate-900/50 border border-slate-700 rounded-lg p-6 hover:bg-slate-900/70 hover:border-purple-500 transition-all duration-300 hover-lift hover-glow">
+           <p class="text-slate-300 text-center">
+             View my complete resume with detailed experience and skills
+           </p>
+         </div> -->
+      </div>
+
       <div class="grid lg:grid-cols-2 gap-12">
         <!-- Education Section -->
         <div class="animate-fade-in-left">
           <h3 class="text-2xl font-bold text-slate-100 mb-8 flex items-center">
-            <span class="w-8 h-8 bg-blue-500 rounded-full flex items-center justify-center text-white mr-3 animate-bounce-custom">
+            <span class="w-8 h-8 bg-blue-500 rounded-full flex items-center justify-center text-white mr-3 ">
               🎓
             </span>
             Education
@@ -28,22 +44,22 @@
                 <span class="text-sm text-blue-400 font-medium">2021 - 2025</span>
               </div>
               <p class="text-slate-400 mb-2">NATIONAL INSTITUTE OF TECHNOLOGY KARNATAKA, SURATHKAL</p>
-              <p class="text-slate-300 text-sm">Comprehensive study of computer science fundamentals, programming languages, and software development.</p>
+              <p class="text-slate-300 text-sm">Electronics and Communication Engineering</p>
             </div>
             
             <div class="bg-slate-900/50 border border-slate-700 rounded-lg p-6 hover:bg-slate-900/70 hover:border-green-500 transition-all duration-300 hover-lift hover-glow border-l-4 border-l-green-500 animate-fade-in-up animate-delay-200">
               <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-3">
-                <h4 class="text-lg font-semibold text-slate-100">Higher Secondary Education</h4>
+                <h4 class="text-lg font-semibold text-slate-100">12th</h4>
                 <span class="text-sm text-green-400 font-medium">2018 - 2020</span>
               </div>
               <p class="text-slate-400 mb-2">JAWAHAR NAVODAYA VIDYALAYA, BENGALURU URBAN KARNATAKA</p>
               <p class="text-slate-300 text-sm">Science stream with focus on Mathematics and Computer Science.</p>
             </div>
 
-            <div class="bg-slate-900/50 border border-slate-700 rounded-lg p-6 hover:bg-slate-900/70 hover:border-green-500 transition-all duration-300 hover-lift hover-glow border-l-4 border-l-green-500 animate-fade-in-up animate-delay-200">
+            <div class="bg-slate-900/50 border border-slate-700 rounded-lg p-6 hover:bg-slate-900/70 hover:border-red-500 transition-all duration-300 hover-lift hover-glow border-l-4 border-l-green-500 animate-fade-in-up animate-delay-200">
               <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-3">
                 <h4 class="text-lg font-semibold text-slate-100">10th</h4>
-                <span class="text-sm text-green-400 font-medium">2017- 2018</span>
+                <span class="text-sm text-red-400 font-medium">2017- 2018</span>
               </div>
               <p class="text-slate-400 mb-2">JAWAHAR NAVODAYA VIDYALAYA, MAU UTTAR PRADESH</p>
               <p class="text-slate-300 text-sm">Science stream with focus on Mathematics and Computer Science.</p>
@@ -54,7 +70,7 @@
         <!-- Projects Section -->
         <div class="animate-fade-in-right">
           <h3 class="text-2xl font-bold text-slate-100 mb-8 flex items-center">
-            <span class="w-8 h-8 bg-blue-500 rounded-full flex items-center justify-center text-white mr-3 animate-bounce-custom">
+            <span class="w-8 h-8 bg-blue-500 rounded-full flex items-center justify-center text-white mr-3 ">
               💼
             </span>
             Featured Projects
@@ -197,21 +213,6 @@
         </div>
       </div>
 
-      <!-- Resume Preview Section -->
-      <div class="mt-16 animate-fade-in-up animate-delay-500">
-        <h3 class="text-2xl font-bold text-slate-100 mb-8 flex items-center justify-center cursor-pointer" (click)="openResumeModal()">
-          <span class="w-8 h-8 bg-purple-500 rounded-full flex items-center justify-center text-white mr-3 animate-bounce-custom">
-            📄
-          </span>
-          Click to Preview Resume
-        </h3>
-        
-        <div class="bg-slate-900/50 border border-slate-700 rounded-lg p-6 hover:bg-slate-900/70 hover:border-purple-500 transition-all duration-300 hover-lift hover-glow">
-           <p class="text-slate-300 text-center">
-             View my complete resume with detailed experience and skills
-           </p>
-         </div>
-      </div>
 
       <!-- Resume Modal Popup -->
       <div *ngIf="showResumeModal" class="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-75" (click)="closeResumeModal()">

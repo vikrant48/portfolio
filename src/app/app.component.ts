@@ -15,7 +15,7 @@ import { ContactComponent } from './components/contact/contact.component';
     HeaderComponent,
     AboutComponent,
     ProjectsComponent,
-    CertificationsComponent,
+    // CertificationsComponent,
     CodingProfileComponent,
     ContactComponent
   ],

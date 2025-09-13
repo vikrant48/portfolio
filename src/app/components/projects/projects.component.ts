@@ -15,13 +15,13 @@ export class ProjectsComponent {
 
   constructor(private sanitizer: DomSanitizer) {
     // Sanitize the PDF URL for safe embedding
-    this.resumeUrl = this.sanitizer.bypassSecurityTrustResourceUrl('assets/resume/vikrant__resume.pdf');
+    this.resumeUrl = this.sanitizer.bypassSecurityTrustResourceUrl('assets/resume/vikrant_resume_NITK.pdf');
   }
 
   downloadResume(): void {
     const link = document.createElement('a');
-    link.href = 'assets/resume/vikrant__resume.pdf';
-    link.download = 'Vikrant_Resume.pdf';
+    link.href = 'assets/resume/vikrant_resume_NITK.pdf';
+    link.download = 'Vikrant_Resume_NITK.pdf';
     link.target = '_blank';
     document.body.appendChild(link);
     link.click();
