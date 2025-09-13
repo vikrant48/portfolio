@@ -53,20 +53,17 @@
         <div class="animate-fade-in-right">
           <h3 class="text-2xl font-bold text-slate-100 mb-8 text-center">Technical Skills</h3>
           
-          <!-- Circular Skills Layout -->
-          <div class="relative w-96 h-96 mx-auto">
-            <div 
-              *ngFor="let skill of allSkills; let i = index" 
-              class="absolute w-16 h-16 bg-gradient-to-br from-blue-500 to-blue-600 rounded-full flex items-center justify-center shadow-lg hover:shadow-xl hover:scale-110 transition-all duration-300 cursor-pointer group"
-              [style.transform]="'rotate(' + (i * 18) + 'deg) translateX(160px) rotate(-' + (i * 18) + 'deg)'"
-              [style.top.px]="192 - 32"
-              [style.left.px]="192 - 32"
-              [title]="skill.name">
-              <i [class]="skill.icon + ' text-white text-xl group-hover:text-yellow-300 transition-colors duration-300'"></i>
-              <div class="absolute -bottom-8 left-1/2 transform -translate-x-1/2 bg-slate-800 text-white text-xs px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity duration-300 whitespace-nowrap">
-                {{ skill.name }}
+          <!-- Canvas-based Skills Layout -->
+          <div id="canvas-container" style="display: flex; justify-content: center; align-items: center; width: 100%; padding-top: 40px;">
+            <canvas #skillsCanvas width="400" height="400" style="width: 100%; max-width: 400px; background: transparent;" title="Skills Visualization">
+              <!-- Fallback for browsers that don't support canvas -->
+              <div class="grid grid-cols-4 gap-4 p-4">
+                <div *ngFor="let skill of allSkills" class="flex flex-col items-center p-2 bg-blue-600 rounded-lg">
+                  <div class="w-8 h-8 bg-white rounded mb-2"></div>
+                  <span class="text-white text-xs text-center">Skill</span>
+                </div>
               </div>
-            </div>
+            </canvas>
           </div>
         </div>
       </div>
