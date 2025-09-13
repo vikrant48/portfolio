@@ -1,0 +1,182 @@
+/* Skills Circle Animation */
+.skills-circle-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 4rem 0;
+  min-height: 600px;
+}
+
+.skills-circle {
+  position: relative;
+  width: 500px;
+  height: 500px;
+  border-radius: 50%;
+  animation: rotate-clockwise 20s linear infinite;
+}
+
+.skill-icon-circle {
+  position: absolute;
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 8px 25px rgba(59, 130, 246, 0.3);
+  transition: all 0.3s ease;
+  cursor: pointer;
+  top: 50%;
+  left: 50%;
+  margin-top: -35px;
+  margin-left: -35px;
+  animation: counter-rotate 20s linear infinite;
+}
+
+.skill-icon-circle i {
+  font-size: 1.8rem;
+  color: #fff;
+  transition: all 0.3s ease;
+}
+
+.skill-icon-circle:hover {
+  transform: scale(1.1);
+  box-shadow: 0 12px 35px rgba(59, 130, 246, 0.5);
+}
+
+/* Clockwise rotation for the container */
+@keyframes rotate-clockwise {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Counter-clockwise rotation for icons to keep them upright */
+@keyframes counter-rotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(-360deg);
+  }
+}
+
+/* Position icons in a perfect circle using data-index */
+.skill-icon-circle[data-index="0"] { transform: rotate(0deg) translateX(200px) rotate(0deg); }
+.skill-icon-circle[data-index="1"] { transform: rotate(18deg) translateX(200px) rotate(-18deg); }
+.skill-icon-circle[data-index="2"] { transform: rotate(36deg) translateX(200px) rotate(-36deg); }
+.skill-icon-circle[data-index="3"] { transform: rotate(54deg) translateX(200px) rotate(-54deg); }
+.skill-icon-circle[data-index="4"] { transform: rotate(72deg) translateX(200px) rotate(-72deg); }
+.skill-icon-circle[data-index="5"] { transform: rotate(90deg) translateX(200px) rotate(-90deg); }
+.skill-icon-circle[data-index="6"] { transform: rotate(108deg) translateX(200px) rotate(-108deg); }
+.skill-icon-circle[data-index="7"] { transform: rotate(126deg) translateX(200px) rotate(-126deg); }
+.skill-icon-circle[data-index="8"] { transform: rotate(144deg) translateX(200px) rotate(-144deg); }
+.skill-icon-circle[data-index="9"] { transform: rotate(162deg) translateX(200px) rotate(-162deg); }
+.skill-icon-circle[data-index="10"] { transform: rotate(180deg) translateX(200px) rotate(-180deg); }
+.skill-icon-circle[data-index="11"] { transform: rotate(198deg) translateX(200px) rotate(-198deg); }
+.skill-icon-circle[data-index="12"] { transform: rotate(216deg) translateX(200px) rotate(-216deg); }
+.skill-icon-circle[data-index="13"] { transform: rotate(234deg) translateX(200px) rotate(-234deg); }
+.skill-icon-circle[data-index="14"] { transform: rotate(252deg) translateX(200px) rotate(-252deg); }
+.skill-icon-circle[data-index="15"] { transform: rotate(270deg) translateX(200px) rotate(-270deg); }
+.skill-icon-circle[data-index="16"] { transform: rotate(288deg) translateX(200px) rotate(-288deg); }
+.skill-icon-circle[data-index="17"] { transform: rotate(306deg) translateX(200px) rotate(-306deg); }
+.skill-icon-circle[data-index="18"] { transform: rotate(324deg) translateX(200px) rotate(-324deg); }
+.skill-icon-circle[data-index="19"] { transform: rotate(342deg) translateX(200px) rotate(-342deg); }
+
+/* Dynamic sizing - make the top icon larger */
+.skills-circle {
+  animation: rotate-clockwise 20s linear infinite;
+}
+
+.skill-icon-circle {
+  animation: counter-rotate 20s linear infinite, dynamic-size 20s linear infinite;
+}
+
+@keyframes dynamic-size {
+  0% { 
+    width: 90px; 
+    height: 90px; 
+    margin-top: -45px; 
+    margin-left: -45px;
+  }
+  5% { 
+    width: 85px; 
+    height: 85px; 
+    margin-top: -42.5px; 
+    margin-left: -42.5px;
+  }
+  25% { 
+    width: 70px; 
+    height: 70px; 
+    margin-top: -35px; 
+    margin-left: -35px;
+  }
+  50% { 
+    width: 70px; 
+    height: 70px; 
+    margin-top: -35px; 
+    margin-left: -35px;
+  }
+  75% { 
+    width: 70px; 
+    height: 70px; 
+    margin-top: -35px; 
+    margin-left: -35px;
+  }
+  95% { 
+    width: 85px; 
+    height: 85px; 
+    margin-top: -42.5px; 
+    margin-left: -42.5px;
+  }
+  100% { 
+    width: 90px; 
+    height: 90px; 
+    margin-top: -45px; 
+    margin-left: -45px;
+  }
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .skills-circle {
+    width: 350px;
+    height: 350px;
+  }
+  
+  .skill-icon-circle[data-index="0"] { transform: rotate(0deg) translateX(140px) rotate(0deg); }
+  .skill-icon-circle[data-index="1"] { transform: rotate(18deg) translateX(140px) rotate(-18deg); }
+  .skill-icon-circle[data-index="2"] { transform: rotate(36deg) translateX(140px) rotate(-36deg); }
+  .skill-icon-circle[data-index="3"] { transform: rotate(54deg) translateX(140px) rotate(-54deg); }
+  .skill-icon-circle[data-index="4"] { transform: rotate(72deg) translateX(140px) rotate(-72deg); }
+  .skill-icon-circle[data-index="5"] { transform: rotate(90deg) translateX(140px) rotate(-90deg); }
+  .skill-icon-circle[data-index="6"] { transform: rotate(108deg) translateX(140px) rotate(-108deg); }
+  .skill-icon-circle[data-index="7"] { transform: rotate(126deg) translateX(140px) rotate(-126deg); }
+  .skill-icon-circle[data-index="8"] { transform: rotate(144deg) translateX(140px) rotate(-144deg); }
+  .skill-icon-circle[data-index="9"] { transform: rotate(162deg) translateX(140px) rotate(-162deg); }
+  .skill-icon-circle[data-index="10"] { transform: rotate(180deg) translateX(140px) rotate(-180deg); }
+  .skill-icon-circle[data-index="11"] { transform: rotate(198deg) translateX(140px) rotate(-198deg); }
+  .skill-icon-circle[data-index="12"] { transform: rotate(216deg) translateX(140px) rotate(-216deg); }
+  .skill-icon-circle[data-index="13"] { transform: rotate(234deg) translateX(140px) rotate(-234deg); }
+  .skill-icon-circle[data-index="14"] { transform: rotate(252deg) translateX(140px) rotate(-252deg); }
+  .skill-icon-circle[data-index="15"] { transform: rotate(270deg) translateX(140px) rotate(-270deg); }
+  .skill-icon-circle[data-index="16"] { transform: rotate(288deg) translateX(140px) rotate(-288deg); }
+  .skill-icon-circle[data-index="17"] { transform: rotate(306deg) translateX(140px) rotate(-306deg); }
+  .skill-icon-circle[data-index="18"] { transform: rotate(324deg) translateX(140px) rotate(-324deg); }
+  .skill-icon-circle[data-index="19"] { transform: rotate(342deg) translateX(140px) rotate(-342deg); }
+  
+  .skill-icon-circle {
+    width: 50px;
+    height: 50px;
+    margin-top: -25px;
+    margin-left: -25px;
+  }
+  
+  .skill-icon-circle i {
+    font-size: 1.4rem;
+  }
+}

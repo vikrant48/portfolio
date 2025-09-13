@@ -1,0 +1,95 @@
+<!-- About Section -->
+<section id="about" class="py-20 bg-slate-900">
+  <div class="container mx-auto px-4">
+    <div class="max-w-6xl mx-auto">
+      <!-- Section Header -->
+      <div class="text-center mb-16 animate-fade-in-up">
+        <h2 class="text-4xl md:text-5xl font-bold text-slate-100 mb-4">About Me</h2>
+        <div class="w-24 h-1 bg-blue-500 mx-auto mb-6 animate-pulse-custom"></div>
+        <p class="text-xl text-slate-300 max-w-2xl mx-auto">
+          Passionate about creating innovative solutions and constantly learning new technologies
+        </p>
+      </div>
+
+      <div class="grid lg:grid-cols-2 gap-12 items-center">
+        <!-- About Content -->
+        <div class="space-y-6 animate-fade-in-left">
+          <h3 class="text-2xl font-bold text-slate-100 mb-4">Full Stack Developer & Problem Solver</h3>
+          <p class="text-slate-300 leading-relaxed animate-fade-in-up animate-delay-100">
+            I'm a passionate Full Stack Developer with a strong foundation in both frontend and backend technologies. 
+            I love turning complex problems into simple, beautiful, and intuitive solutions.
+          </p>
+          <p class="text-slate-300 leading-relaxed animate-fade-in-up animate-delay-200">
+            With experience in modern web technologies like React, Angular, Node.js, and various databases, 
+            I create scalable and efficient applications that provide excellent user experiences.
+          </p>
+          <p class="text-slate-300 leading-relaxed animate-fade-in-up animate-delay-300">
+            When I'm not coding, you can find me exploring new technologies, contributing to open-source projects, 
+            or solving algorithmic challenges on various coding platforms.
+          </p>
+          
+          <!-- Personal Info -->
+          <div class="grid sm:grid-cols-2 gap-4 mt-8 animate-fade-in-up animate-delay-400">
+            <div class="flex items-center space-x-3 hover-lift">
+              <div class="w-2 h-2 bg-blue-500 rounded-full animate-pulse"></div>
+              <span class="text-slate-300"><strong class="text-slate-100">Location:</strong> Gurugram, India</span>
+            </div>
+            <div class="flex items-center space-x-3 hover-lift">
+              <div class="w-2 h-2 bg-blue-500 rounded-full animate-pulse"></div>
+              <span class="text-slate-300"><strong class="text-slate-100">Email:</strong> vikrantchauhan9794&#64;gmail.com</span>
+            </div>
+            <div class="flex items-center space-x-3 hover-lift">
+              <div class="w-2 h-2 bg-blue-500 rounded-full animate-pulse"></div>
+              <span class="text-slate-300"><strong class="text-slate-100">Phone:</strong> +91 6386696764</span>
+            </div>
+            <div class="flex items-center space-x-3 hover-lift">
+              <div class="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
+              <span class="text-slate-300"><strong class="text-slate-100">Status:</strong> <span class="text-green-400">Available for work</span></span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Skills Section -->
+        <div class="animate-fade-in-right">
+          <h3 class="text-2xl font-bold text-slate-100 mb-8 text-center">Technical Skills</h3>
+          
+          <!-- Circular Skills Layout -->
+          <div class="relative w-96 h-96 mx-auto">
+            <div 
+              *ngFor="let skill of allSkills; let i = index" 
+              class="absolute w-16 h-16 bg-gradient-to-br from-blue-500 to-blue-600 rounded-full flex items-center justify-center shadow-lg hover:shadow-xl hover:scale-110 transition-all duration-300 cursor-pointer group"
+              [style.transform]="'rotate(' + (i * 18) + 'deg) translateX(160px) rotate(-' + (i * 18) + 'deg)'"
+              [style.top.px]="192 - 32"
+              [style.left.px]="192 - 32"
+              [title]="skill.name">
+              <i [class]="skill.icon + ' text-white text-xl group-hover:text-yellow-300 transition-colors duration-300'"></i>
+              <div class="absolute -bottom-8 left-1/2 transform -translate-x-1/2 bg-slate-800 text-white text-xs px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity duration-300 whitespace-nowrap">
+                {{ skill.name }}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Stats Section -->
+      <div class="mt-16 grid grid-cols-2 md:grid-cols-4 gap-8 animate-fade-in-up animate-delay-500">
+        <div class="text-center hover-lift">
+          <div class="text-3xl md:text-4xl font-bold text-blue-400 mb-2 animate-bounce-custom">20+</div>
+          <div class="text-slate-400">Projects Completed</div>
+        </div>
+        <div class="text-center hover-lift animate-delay-100">
+          <div class="text-3xl md:text-4xl font-bold text-green-400 mb-2 animate-bounce-custom">1+</div>
+          <div class="text-slate-400">Years Experience</div>
+        </div>
+        <div class="text-center hover-lift animate-delay-200">
+          <div class="text-3xl md:text-4xl font-bold text-purple-400 mb-2 animate-bounce-custom">500+</div>
+          <div class="text-slate-400">Problems Solved</div>
+        </div>
+        <div class="text-center hover-lift animate-delay-300">
+          <div class="text-3xl md:text-4xl font-bold text-orange-400 mb-2 animate-bounce-custom">24/7</div>
+          <div class="text-slate-400">Support</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

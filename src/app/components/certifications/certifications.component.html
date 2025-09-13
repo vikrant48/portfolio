@@ -1,0 +1,193 @@
+<!-- Certifications Section -->
+<section class="py-16 bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-900 dark:to-gray-800">
+  <div class="container mx-auto px-6">
+    <!-- Section Header -->
+    <div class="text-center mb-12">
+      <h2 class="text-4xl font-bold text-gray-800 dark:text-white mb-4">
+        Professional Certifications
+      </h2>
+      <p class="text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
+        Showcasing my commitment to continuous learning and professional development through industry-recognized certifications
+      </p>
+    </div>
+
+    <!-- Certifications Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      <div 
+        *ngFor="let cert of certifications" 
+        class="bg-white dark:bg-gray-800 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 cursor-pointer group"
+        (click)="openCertModal(cert)"
+      >
+        <!-- Certificate Badge/Image -->
+        <div class="relative overflow-hidden rounded-t-xl bg-gradient-to-br from-blue-50 to-indigo-100 dark:from-gray-700 dark:to-gray-600 p-6">
+          <div class="flex justify-center items-center h-32">
+            <img 
+              *ngIf="cert.badgeUrl" 
+              [src]="cert.badgeUrl" 
+              [alt]="cert.title + ' badge'"
+              class="max-h-20 max-w-20 object-contain group-hover:scale-110 transition-transform duration-300"
+              onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'"
+            >
+            <div class="hidden w-20 h-20 bg-gradient-to-br from-blue-500 to-purple-600 rounded-full items-center justify-center">
+              <svg class="w-10 h-10 text-white" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M6.267 3.455a3.066 3.066 0 001.745-.723 3.066 3.066 0 013.976 0 3.066 3.066 0 001.745.723 3.066 3.066 0 012.812 2.812c.051.643.304 1.254.723 1.745a3.066 3.066 0 010 3.976 3.066 3.066 0 00-.723 1.745 3.066 3.066 0 01-2.812 2.812 3.066 3.066 0 00-1.745.723 3.066 3.066 0 01-3.976 0 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 01-2.812-2.812 3.066 3.066 0 00-.723-1.745 3.066 3.066 0 010-3.976 3.066 3.066 0 00.723-1.745 3.066 3.066 0 012.812-2.812zm7.44 5.252a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+              </svg>
+            </div>
+          </div>
+          <!-- Verification Badge -->
+          <div *ngIf="cert.verificationUrl" class="absolute top-2 right-2">
+            <div class="bg-green-500 text-white text-xs px-2 py-1 rounded-full flex items-center">
+              <svg class="w-3 h-3 mr-1" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M6.267 3.455a3.066 3.066 0 001.745-.723 3.066 3.066 0 013.976 0 3.066 3.066 0 001.745.723 3.066 3.066 0 012.812 2.812c.051.643.304 1.254.723 1.745a3.066 3.066 0 010 3.976 3.066 3.066 0 00-.723 1.745 3.066 3.066 0 01-2.812 2.812 3.066 3.066 0 00-1.745.723 3.066 3.066 0 01-3.976 0 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 01-2.812-2.812 3.066 3.066 0 00-.723-1.745 3.066 3.066 0 010-3.976 3.066 3.066 0 00.723-1.745 3.066 3.066 0 012.812-2.812zm7.44 5.252a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+              </svg>
+              Verified
+            </div>
+          </div>
+        </div>
+
+        <!-- Certificate Content -->
+        <div class="p-6">
+          <h3 class="text-xl font-bold text-gray-800 dark:text-white mb-2 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
+            {{ cert.title }}
+          </h3>
+          <p class="text-gray-600 dark:text-gray-300 mb-2">
+            <span class="font-semibold">{{ cert.issuer }}</span> • {{ cert.date }}
+          </p>
+          <p class="text-gray-500 dark:text-gray-400 text-sm mb-4 line-clamp-2">
+            {{ cert.description }}
+          </p>
+          
+          <!-- Skills Tags -->
+          <div class="flex flex-wrap gap-2 mb-4">
+            <span 
+              *ngFor="let skill of cert.skills.slice(0, 3)" 
+              class="bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200 text-xs px-2 py-1 rounded-full"
+            >
+              {{ skill }}
+            </span>
+            <span 
+              *ngIf="cert.skills.length > 3" 
+              class="bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300 text-xs px-2 py-1 rounded-full"
+            >
+              +{{ cert.skills.length - 3 }} more
+            </span>
+          </div>
+
+          <!-- Credential ID -->
+          <div *ngIf="cert.credentialId" class="text-xs text-gray-500 dark:text-gray-400">
+            ID: {{ cert.credentialId }}
+          </div>
+        </div>
+
+        <!-- Hover Effect Overlay -->
+        <div class="absolute inset-0 bg-gradient-to-t from-blue-600/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-xl pointer-events-none"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Certification Modal -->
+<div 
+  *ngIf="showCertModal && selectedCert" 
+  class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50"
+  (click)="closeCertModal()"
+>
+  <div 
+    class="bg-white dark:bg-gray-800 rounded-xl max-w-2xl w-full max-h-[90vh] overflow-y-auto"
+    (click)="$event.stopPropagation()"
+  >
+    <!-- Modal Header -->
+    <div class="sticky top-0 bg-white dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700 p-6 rounded-t-xl">
+      <div class="flex justify-between items-start">
+        <div class="flex items-center space-x-4">
+          <img 
+            *ngIf="selectedCert.badgeUrl" 
+            [src]="selectedCert.badgeUrl" 
+            [alt]="selectedCert.title + ' badge'"
+            class="w-16 h-16 object-contain"
+            onerror="this.style.display='none'"
+          >
+          <div>
+            <h3 class="text-2xl font-bold text-gray-800 dark:text-white">
+              {{ selectedCert.title }}
+            </h3>
+            <p class="text-gray-600 dark:text-gray-300">
+              {{ selectedCert.issuer }} • {{ selectedCert.date }}
+            </p>
+          </div>
+        </div>
+        <button 
+          (click)="closeCertModal()" 
+          class="text-gray-400 hover:text-gray-600 dark:hover:text-gray-200 transition-colors"
+        >
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- Modal Content -->
+    <div class="p-6">
+      <!-- Description -->
+      <div class="mb-6">
+        <h4 class="text-lg font-semibold text-gray-800 dark:text-white mb-2">Description</h4>
+        <p class="text-gray-600 dark:text-gray-300 leading-relaxed">
+          {{ selectedCert.description }}
+        </p>
+      </div>
+
+      <!-- Skills -->
+      <div class="mb-6">
+        <h4 class="text-lg font-semibold text-gray-800 dark:text-white mb-3">Skills & Technologies</h4>
+        <div class="flex flex-wrap gap-2">
+          <span 
+            *ngFor="let skill of selectedCert.skills" 
+            class="bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200 px-3 py-1 rounded-full text-sm"
+          >
+            {{ skill }}
+          </span>
+        </div>
+      </div>
+
+      <!-- Credential Information -->
+      <div class="mb-6">
+        <h4 class="text-lg font-semibold text-gray-800 dark:text-white mb-3">Credential Information</h4>
+        <div class="bg-gray-50 dark:bg-gray-700 rounded-lg p-4">
+          <div *ngIf="selectedCert.credentialId" class="mb-2">
+            <span class="font-medium text-gray-700 dark:text-gray-300">Credential ID:</span>
+            <span class="ml-2 text-gray-600 dark:text-gray-400 font-mono">{{ selectedCert.credentialId }}</span>
+          </div>
+          <div class="mb-2">
+            <span class="font-medium text-gray-700 dark:text-gray-300">Issued:</span>
+            <span class="ml-2 text-gray-600 dark:text-gray-400">{{ selectedCert.date }}</span>
+          </div>
+          <div>
+            <span class="font-medium text-gray-700 dark:text-gray-300">Issuing Organization:</span>
+            <span class="ml-2 text-gray-600 dark:text-gray-400">{{ selectedCert.issuer }}</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Action Buttons -->
+      <div class="flex flex-col sm:flex-row gap-3">
+        <button 
+          *ngIf="selectedCert.verificationUrl" 
+          (click)="openVerificationUrl(selectedCert.verificationUrl!)" 
+          class="flex-1 bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg transition-colors flex items-center justify-center"
+        >
+          <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+          </svg>
+          Verify Credential
+        </button>
+        <button 
+          (click)="closeCertModal()" 
+          class="flex-1 bg-gray-200 dark:bg-gray-600 hover:bg-gray-300 dark:hover:bg-gray-500 text-gray-800 dark:text-white px-6 py-3 rounded-lg transition-colors"
+        >
+          Close
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

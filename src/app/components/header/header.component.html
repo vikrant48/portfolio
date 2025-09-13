@@ -1,0 +1,144 @@
+<!-- Header Section -->
+<header class="bg-slate-900/95 backdrop-blur-sm shadow-2xl fixed w-full top-0 z-50 border-b border-slate-700 animate-slide-in-down">
+  <!-- Navigation -->
+  <nav class="container mx-auto px-6 py-4">
+    <div class="flex justify-between items-center">
+      <!-- Logo -->
+      <div class="text-2xl font-bold text-slate-100 animate-fade-in-left">
+        <span class="text-blue-400 hover-glow transition-all duration-300">Vikrant</span><span class="text-purple-400">Dev</span>
+      </div>
+      
+      <!-- Desktop Navigation -->
+      <div class="hidden md:flex items-center space-x-8 animate-fade-in-right animate-delay-200">
+        <a href="#about" class="text-slate-300 hover:text-blue-400 transition-all duration-300 relative group">
+          About
+          <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-blue-400 transition-all duration-300 group-hover:w-full"></span>
+        </a>
+        <a href="#resume" class="text-slate-300 hover:text-blue-400 transition-all duration-300 relative group">
+          Projects & Resume
+          <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-blue-400 transition-all duration-300 group-hover:w-full"></span>
+        </a>
+        <a href="#coding-profile" class="text-slate-300 hover:text-blue-400 transition-all duration-300 relative group">
+          Coding Profile
+          <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-blue-400 transition-all duration-300 group-hover:w-full"></span>
+        </a>
+        <a href="#message" class="text-slate-300 hover:text-blue-400 transition-all duration-300 relative group">
+          Contact
+          <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-blue-400 transition-all duration-300 group-hover:w-full"></span>
+        </a>
+        
+        <!-- Resume Download Button -->
+        <button (click)="downloadResume()" class="bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-white px-6 py-2 rounded-full font-medium transition-all duration-300 transform hover:scale-105 hover:shadow-lg hover:shadow-blue-500/25 animate-pulse-glow">
+          <i class="fas fa-download mr-2"></i>
+          Resume
+        </button>
+      </div>
+      
+      <!-- Mobile Menu Button -->
+      <div class="md:hidden animate-fade-in-right animate-delay-300">
+        <button (click)="toggleMobileMenu()" class="text-slate-300 hover:text-blue-400 focus:outline-none transition-all duration-300 hover:scale-110">
+          <svg class="w-6 h-6 transition-transform duration-300" [class.rotate-90]="isMobileMenuOpen" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+          </svg>
+        </button>
+      </div>
+    </div>
+    
+    <!-- Mobile Navigation -->
+    <div [class]="'md:hidden mt-4 transition-all duration-300 overflow-hidden ' + (isMobileMenuOpen ? 'max-h-80 opacity-100' : 'max-h-0 opacity-0')">
+      <div class="flex flex-col space-y-4 py-4 border-t border-slate-700">
+        <a href="#about" class="text-slate-300 hover:text-blue-400 transition-all duration-300 hover:translate-x-2 animate-fade-in-up animate-delay-100" (click)="closeMobileMenu()">About</a>
+        <a href="#resume" class="text-slate-300 hover:text-blue-400 transition-all duration-300 hover:translate-x-2 animate-fade-in-up animate-delay-200" (click)="closeMobileMenu()">Projects</a>
+        <a href="#coding-profile" class="text-slate-300 hover:text-blue-400 transition-all duration-300 hover:translate-x-2 animate-fade-in-up animate-delay-300" (click)="closeMobileMenu()">Coding Profile</a>
+        <a href="#message" class="text-slate-300 hover:text-blue-400 transition-all duration-300 hover:translate-x-2 animate-fade-in-up animate-delay-400" (click)="closeMobileMenu()">Contact</a>
+        
+        <!-- Mobile Resume Download Button -->
+        <button (click)="downloadResume(); closeMobileMenu()" class="bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-white px-6 py-3 rounded-full font-medium transition-all duration-300 transform hover:scale-105 hover:shadow-lg hover:shadow-blue-500/25 animate-fade-in-up animate-delay-500 mx-auto w-fit">
+          <i class="fas fa-download mr-2"></i>
+          Download Resume
+        </button>
+      </div>
+    </div>
+  </nav>
+</header>
+
+<!-- Hero Section -->
+<section id="home" class="min-h-screen flex items-center justify-center bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 pt-20 relative overflow-hidden">
+  <!-- Animated background elements -->
+  <div class="absolute inset-0 overflow-hidden">
+    <div class="absolute -top-40 -right-40 w-80 h-80 bg-blue-500/10 rounded-full blur-3xl animate-pulse-custom"></div>
+    <div class="absolute -bottom-40 -left-40 w-80 h-80 bg-purple-500/10 rounded-full blur-3xl animate-pulse-custom animate-delay-300"></div>
+  </div>
+  
+  <div class="container mx-auto px-4 text-center relative z-10">
+    <div class="max-w-4xl mx-auto">
+      <!-- Profile Image -->
+      <div class="mb-8 animate-fade-in-up">
+        <div class="relative inline-block">
+          <div class="absolute inset-0 bg-gradient-to-r from-blue-400 to-purple-400 rounded-full blur-lg opacity-75 animate-pulse-custom"></div>
+          <img 
+            src="assets/images/profile_img.png" 
+            alt="Vikram's Profile" 
+            class="relative w-32 h-32 md:w-48 md:h-48 rounded-full mx-auto shadow-2xl border-4 border-slate-700 object-cover hover-lift"
+            loading="lazy">
+        </div>
+      </div>
+      
+      <!-- Hero Text -->
+      <h1 class="text-4xl md:text-6xl font-bold text-slate-100 mb-4 animate-fade-in-up animate-delay-200">
+        Hi, I'm <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-400 animate-pulse-custom">Vikrant Chauhan</span>
+      </h1>
+      
+      <div class="text-xl md:text-2xl text-slate-300 mb-8 h-8 animate-fade-in-up animate-delay-300">
+        <span class="typing-text font-mono">{{ currentTypingText }}</span>
+        <span class="cursor animate-pulse text-blue-400">|</span>
+      </div>
+      
+      <p class="text-lg text-slate-400 mb-8 max-w-2xl mx-auto leading-relaxed animate-fade-in-up animate-delay-400">
+        Passionate Full Stack Developer with expertise in modern web technologies. 
+        I love creating innovative solutions and bringing ideas to life through code.
+      </p>
+      
+      <!-- CTA Buttons -->
+      <div class="flex flex-col sm:flex-row gap-4 justify-center animate-fade-in-up animate-delay-500">
+        <a href="#about" 
+           class="bg-gradient-to-r from-blue-500 to-blue-600 text-white px-8 py-3 rounded-lg hover:from-blue-600 hover:to-blue-700 transition-all duration-300 font-medium shadow-lg hover:shadow-2xl hover-lift hover-glow">
+          Learn More About Me
+        </a>
+        <a href="#message" 
+           class="border-2 border-blue-400 text-blue-400 px-8 py-3 rounded-lg hover:bg-blue-400 hover:text-slate-900 transition-all duration-300 font-medium hover-lift">
+          Get In Touch
+        </a>
+      </div>
+      
+      <!-- Social Links -->
+      <div class="flex justify-center space-x-6 mt-8 animate-fade-in-up animate-delay-500">
+        <a href="https://github.com/vikrant48" 
+           target="_blank" 
+           rel="noopener noreferrer"
+           class="text-slate-400 hover:text-blue-400 transition-all duration-300 transform hover:scale-125 hover-glow p-3 rounded-full bg-slate-800/50 hover:bg-slate-700/50"
+           aria-label="GitHub Profile">
+          <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/>
+          </svg>
+        </a>
+        <a href="https://linkedin.com/in/vikrant-chauhan-in" 
+           target="_blank" 
+           rel="noopener noreferrer"
+           class="text-slate-400 hover:text-blue-400 transition-all duration-300 transform hover:scale-125 hover-glow p-3 rounded-full bg-slate-800/50 hover:bg-slate-700/50 animate-delay-100"
+           aria-label="LinkedIn Profile">
+          <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+          </svg>
+        </a>
+        <a href="mailto:vikrantchauhan9794&#64;gmail.com" 
+           class="text-slate-400 hover:text-blue-400 transition-all duration-300 transform hover:scale-125 hover-glow p-3 rounded-full bg-slate-800/50 hover:bg-slate-700/50 animate-delay-200"
+           aria-label="Email">
+          <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M24 5.457v13.909c0 .904-.732 1.636-1.636 1.636h-3.819V11.73L12 16.64l-6.545-4.91v9.273H1.636A1.636 1.636 0 010 19.366V5.457c0-.904.732-1.636 1.636-1.636h.91L12 11.71l9.455-7.889h.909c.904 0 1.636.732 1.636 1.636z"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
