@@ -1,10 +1,10 @@
 <!-- Header Section -->
 <header class="bg-slate-900/95 backdrop-blur-sm shadow-2xl fixed w-full top-0 z-50 border-b border-slate-700 animate-slide-in-down">
   <!-- Navigation -->
-  <nav class="container mx-auto px-6 py-4">
+  <nav class="container mx-auto px-4 sm:px-6 py-2 sm:py-4">
     <div class="flex justify-between items-center">
       <!-- Logo -->
-      <div class="text-2xl font-bold text-slate-100 animate-fade-in-left">
+      <div class="text-xl sm:text-2xl font-bold text-slate-100 animate-fade-in-left">
         <span class="text-blue-400 hover-glow transition-all duration-300">Vikrant</span><span class="text-purple-400">Chauhan</span>
       </div>
       
@@ -36,7 +36,7 @@
       
       <!-- Mobile Menu Button -->
       <div class="md:hidden animate-fade-in-right animate-delay-300">
-        <button (click)="toggleMobileMenu()" class="text-slate-300 hover:text-blue-400 focus:outline-none transition-all duration-300 hover:scale-110">
+        <button (click)="toggleMobileMenu()" class="text-slate-300 hover:text-blue-400 focus:outline-none transition-all duration-300 hover:scale-110 p-1">
           <svg class="w-6 h-6 transition-transform duration-300" [class.rotate-90]="isMobileMenuOpen" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
           </svg>
@@ -45,15 +45,15 @@
     </div>
     
     <!-- Mobile Navigation -->
-    <div [class]="'md:hidden mt-4 transition-all duration-300 overflow-hidden ' + (isMobileMenuOpen ? 'max-h-80 opacity-100' : 'max-h-0 opacity-0')">
-      <div class="flex flex-col space-y-4 py-4 border-t border-slate-700">
-        <a href="#about" class="text-slate-300 hover:text-blue-400 transition-all duration-300 hover:translate-x-2 animate-fade-in-up animate-delay-100" (click)="closeMobileMenu()">About</a>
-        <a href="#resume" class="text-slate-300 hover:text-blue-400 transition-all duration-300 hover:translate-x-2 animate-fade-in-up animate-delay-200" (click)="closeMobileMenu()">Projects</a>
-        <a href="#coding-profile" class="text-slate-300 hover:text-blue-400 transition-all duration-300 hover:translate-x-2 animate-fade-in-up animate-delay-300" (click)="closeMobileMenu()">Coding Profile</a>
-        <a href="#message" class="text-slate-300 hover:text-blue-400 transition-all duration-300 hover:translate-x-2 animate-fade-in-up animate-delay-400" (click)="closeMobileMenu()">Contact</a>
+    <div [class]="'md:hidden mt-2 transition-all duration-300 overflow-hidden ' + (isMobileMenuOpen ? 'max-h-80 opacity-100' : 'max-h-0 opacity-0')">
+      <div class="flex flex-col space-y-2 py-2 border-t border-slate-700 px-2">
+        <a href="#about" class="text-slate-300 hover:text-blue-400 transition-all duration-300 hover:translate-x-2 animate-fade-in-up animate-delay-100 py-1" (click)="closeMobileMenu()">About</a>
+        <a href="#resume" class="text-slate-300 hover:text-blue-400 transition-all duration-300 hover:translate-x-2 animate-fade-in-up animate-delay-200 py-1" (click)="closeMobileMenu()">Projects</a>
+        <a href="#coding-profile" class="text-slate-300 hover:text-blue-400 transition-all duration-300 hover:translate-x-2 animate-fade-in-up animate-delay-300 py-1" (click)="closeMobileMenu()">Coding Profile</a>
+        <a href="#message" class="text-slate-300 hover:text-blue-400 transition-all duration-300 hover:translate-x-2 animate-fade-in-up animate-delay-400 py-1" (click)="closeMobileMenu()">Contact</a>
         
         <!-- Mobile Resume Download Button -->
-        <button (click)="downloadResume(); closeMobileMenu()" class="bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-white px-6 py-3 rounded-full font-medium transition-all duration-300 transform hover:scale-105 hover:shadow-lg hover:shadow-blue-500/25 animate-fade-in-up animate-delay-500 mx-auto w-fit">
+        <button (click)="downloadResume(); closeMobileMenu()" class="bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-white px-4 py-2 rounded-full font-medium transition-all duration-300 transform hover:scale-105 hover:shadow-lg hover:shadow-blue-500/25 animate-fade-in-up animate-delay-500 self-start max-w-fit">
           <i class="fas fa-download mr-2"></i>
           Download Resume
         </button>
