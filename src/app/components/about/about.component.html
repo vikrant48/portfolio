@@ -20,7 +20,7 @@
             I love turning complex problems into simple, beautiful, and intuitive solutions.
           </p>
           <p class="text-slate-300 leading-relaxed animate-fade-in-up animate-delay-200">
-            With experience in modern web technologies like React, Angular, Node.js, and various databases, 
+            With <span class="text-blue-400 font-semibold">2+ years of experience</span> in modern web technologies like React, Angular, Node.js, and various databases, 
             I create scalable and efficient applications that provide excellent user experiences.
           </p>
           <p class="text-slate-300 leading-relaxed animate-fade-in-up animate-delay-300">
@@ -28,8 +28,43 @@
             or solving algorithmic challenges on various coding platforms.
           </p>
           
+          <!-- Achievement Highlights -->
+          <div class="bg-slate-800/50 rounded-lg p-4 animate-fade-in-up animate-delay-400">
+            <h4 class="text-lg font-semibold text-blue-400 mb-3">Recent Achievements</h4>
+            <div class="grid sm:grid-cols-2 gap-3">
+              <div class="flex items-center space-x-2">
+                <span class="text-green-400">✓</span>
+                <span class="text-slate-300 text-sm">Built 15+ responsive web applications</span>
+              </div>
+              <div class="flex items-center space-x-2">
+                <span class="text-green-400">✓</span>
+                <span class="text-slate-300 text-sm">Optimized app performance by 40%</span>
+              </div>
+              <div class="flex items-center space-x-2">
+                <span class="text-green-400">✓</span>
+                <span class="text-slate-300 text-sm">Contributed to 1 open source projects</span>
+              </div>
+              <div class="flex items-center space-x-2">
+                <span class="text-green-400">✓</span>
+                <span class="text-slate-300 text-sm">Solved 500+ coding challenges</span>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Specializations -->
+          <div class="animate-fade-in-up animate-delay-500">
+            <h4 class="text-lg font-semibold text-blue-400 mb-3">Specializations</h4>
+            <div class="flex flex-wrap gap-2">
+              <span class="px-3 py-1 bg-blue-500/20 text-blue-300 rounded-full text-sm border border-blue-500/30">Full Stack Development</span>
+              <span class="px-3 py-1 bg-green-500/20 text-green-300 rounded-full text-sm border border-green-500/30">API Design</span>
+              <span class="px-3 py-1 bg-purple-500/20 text-purple-300 rounded-full text-sm border border-purple-500/30">Database Optimization</span>
+              <span class="px-3 py-1 bg-yellow-500/20 text-yellow-300 rounded-full text-sm border border-yellow-500/30">UI/UX Implementation</span>
+              <span class="px-3 py-1 bg-red-500/20 text-red-300 rounded-full text-sm border border-red-500/30">Problem Solving</span>
+            </div>
+          </div>
+          
           <!-- Personal Info -->
-          <div class="grid sm:grid-cols-2 gap-4 mt-8 animate-fade-in-up animate-delay-400">
+          <div class="grid sm:grid-cols-2 gap-4 mt-8 animate-fade-in-up animate-delay-600">
             <div class="flex items-center space-x-3 hover-lift">
               <div class="w-2 h-2 bg-blue-500 rounded-full animate-pulse"></div>
               <span class="text-slate-300"><strong class="text-slate-100">Location:</strong> Gurugram, India</span>
@@ -49,21 +84,37 @@
           </div>
         </div>
 
-        <!-- Skills Section -->
+        <!-- Enhanced Skills Section -->
         <div class="animate-fade-in-right">
           <h3 class="text-2xl font-bold text-slate-100 mb-8 text-center">Technical Skills</h3>
           
-          <!-- Canvas-based Skills Layout -->
-          <div id="canvas-container" style="display: flex; justify-content: center; align-items: center; width: 100%; padding-top: 40px;">
-            <canvas #skillsCanvas width="400" height="400" style="width: 100%; max-width: 400px; background: transparent;" title="Skills Visualization">
-              <!-- Fallback for browsers that don't support canvas -->
-              <div class="grid grid-cols-4 gap-4 p-4">
-                <div *ngFor="let skill of allSkills" class="flex flex-col items-center p-2 bg-blue-600 rounded-lg">
-                  <div class="w-8 h-8 bg-white rounded mb-2"></div>
-                  <span class="text-white text-xs text-center">Skill</span>
+          <!-- Category Filter -->
+          <div class="flex flex-wrap justify-center gap-2 mb-8">
+            <button 
+              (click)="selectCategory('All')"
+              [class]="selectedCategory === 'All' ? 'bg-blue-500 text-white' : 'bg-slate-700 text-slate-300 hover:bg-slate-600'"
+              class="px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 hover:scale-105">
+              All
+            </button>
+            <button 
+              *ngFor="let category of skillCategories"
+              (click)="selectCategory(category)"
+              [class]="selectedCategory === category ? 'bg-blue-500 text-white' : 'bg-slate-700 text-slate-300 hover:bg-slate-600'"
+              class="px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 hover:scale-105">
+              {{category}}
+            </button>
+          </div>
+
+          <!-- Skills Grid Layout -->
+          <div class="skills-grid-container p-6">
+            <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-6">
+              <div *ngFor="let skill of getFilteredSkills()" class="skill-item flex flex-col items-center p-4 bg-slate-800/50 rounded-lg hover:bg-slate-700/50 transition-all duration-300 hover:scale-105">
+                  <div class="skill-icon mb-3">
+                    <img [src]="skill.svgPath" [alt]="skill.name + ' icon'" class="w-8 h-8">
+                  </div>
+                  <span class="skill-name text-sm text-slate-200 text-center font-medium">{{skill.name}}</span>
                 </div>
-              </div>
-            </canvas>
+            </div>
           </div>
         </div>
       </div>

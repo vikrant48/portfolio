@@ -1,8 +1,12 @@
-import { Component, ViewChild, ElementRef, AfterViewInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 interface Skill {
+  name: string;
   svgPath: string;
+  category: string;
+  proficiency: number; // 1-100
+  description: string;
 }
 
 @Component({
@@ -12,192 +16,61 @@ interface Skill {
   templateUrl: './about.component.html',
   styleUrl: './about.component.css'
 })
-export class AboutComponent implements AfterViewInit {
-  @ViewChild('skillsCanvas', { static: false }) canvasRef!: ElementRef<HTMLCanvasElement>;
-  // All skills in a single array for circular animation
+export class AboutComponent {
+  // All skills with enhanced data
   allSkills: Skill[] = [
-    { svgPath: 'assets/icons/skills/Javascript.svg' },
-    { svgPath: 'assets/icons/skills/Typescript.svg' },
-    { svgPath: 'assets/icons/skills/React.svg' },
-    { svgPath: 'assets/icons/skills/angularjs.svg' },
-    { svgPath: 'assets/icons/skills/tailwind-css.svg' },
-    { svgPath: 'assets/icons/skills/Nodedotjs.svg' },
-    { svgPath: 'assets/icons/skills/express.svg' },
-    { svgPath: 'assets/icons/skills/mongodb.svg' },
-    { svgPath: 'assets/icons/skills/mysql.svg' },
-    { svgPath: 'assets/icons/skills/redis.svg' },
-    { svgPath: 'assets/icons/skills/java.svg' },
-    { svgPath: 'assets/icons/skills/spring-boot.svg' },
-    { svgPath: 'assets/icons/skills/github.svg' },
-    { svgPath: 'assets/icons/skills/docker.svg' },
-    { svgPath: 'assets/icons/skills/postman.svg' },
-    { svgPath: 'assets/icons/skills/vs-code.svg' },
-    { svgPath: 'assets/icons/skills/cpp3.svg' },
-    { svgPath: 'assets/icons/skills/Cloudinary.svg' },
-    { svgPath: 'assets/icons/skills/vercel.svg' }
+    { name: 'JavaScript', svgPath: 'assets/icons/skills/Javascript.svg', category: 'Frontend', proficiency: 90, description: 'Modern ES6+ JavaScript for dynamic web applications' },
+    { name: 'TypeScript', svgPath: 'assets/icons/skills/Typescript.svg', category: 'Frontend', proficiency: 85, description: 'Type-safe JavaScript for scalable applications' },
+    { name: 'React', svgPath: 'assets/icons/skills/React.svg', category: 'Frontend', proficiency: 88, description: 'Component-based UI library for interactive interfaces' },
+    { name: 'Angular', svgPath: 'assets/icons/skills/angularjs.svg', category: 'Frontend', proficiency: 82, description: 'Full-featured framework for enterprise applications' },
+    { name: 'Tailwind CSS', svgPath: 'assets/icons/skills/tailwind-css.svg', category: 'Frontend', proficiency: 90, description: 'Utility-first CSS framework for rapid UI development' },
+    { name: 'Node.js', svgPath: 'assets/icons/skills/Nodedotjs.svg', category: 'Backend', proficiency: 85, description: 'Server-side JavaScript runtime environment' },
+    { name: 'Express.js', svgPath: 'assets/icons/skills/express.svg', category: 'Backend', proficiency: 88, description: 'Fast and minimalist web framework for Node.js' },
+    { name: 'MongoDB', svgPath: 'assets/icons/skills/mongodb.svg', category: 'Database', proficiency: 80, description: 'NoSQL document database for flexible data storage' },
+    { name: 'MySQL', svgPath: 'assets/icons/skills/mysql.svg', category: 'Database', proficiency: 75, description: 'Relational database management system' },
+    { name: 'Redis', svgPath: 'assets/icons/skills/redis.svg', category: 'Database', proficiency: 70, description: 'In-memory data structure store for caching' },
+    { name: 'Java', svgPath: 'assets/icons/skills/java.svg', category: 'Backend', proficiency: 78, description: 'Object-oriented programming language for enterprise solutions' },
+    { name: 'Spring Boot', svgPath: 'assets/icons/skills/spring-boot.svg', category: 'Backend', proficiency: 75, description: 'Java framework for building microservices' },
+    { name: 'GitHub', svgPath: 'assets/icons/skills/github.svg', category: 'Tools', proficiency: 90, description: 'Version control and collaborative development platform' },
+    { name: 'Docker', svgPath: 'assets/icons/skills/docker.svg', category: 'DevOps', proficiency: 72, description: 'Containerization platform for application deployment' },
+    { name: 'Postman', svgPath: 'assets/icons/skills/postman.svg', category: 'Tools', proficiency: 85, description: 'API development and testing tool' },
+    { name: 'VS Code', svgPath: 'assets/icons/skills/vs-code.svg', category: 'Tools', proficiency: 95, description: 'Powerful code editor with extensive extensions' },
+    { name: 'C++', svgPath: 'assets/icons/skills/cpp3.svg', category: 'Programming', proficiency: 80, description: 'High-performance programming language for system development' },
+    { name: 'Cloudinary', svgPath: 'assets/icons/skills/Cloudinary.svg', category: 'Cloud', proficiency: 75, description: 'Cloud-based image and video management service' },
+    { name: 'Vercel', svgPath: 'assets/icons/skills/vercel.svg', category: 'Cloud', proficiency: 80, description: 'Frontend deployment platform with global CDN' }
   ];
+
+  skillCategories = ['Frontend', 'Backend', 'Database', 'DevOps', 'Tools', 'Programming', 'Cloud'];
+  selectedCategory = 'All';
+  hoveredSkill: Skill | null = null;
 
   constructor() {
   }
 
-  ngAfterViewInit() {
-    this.drawSkillsCircle();
-    this.setupCanvasInteraction();
-  }
-
-  private setupCanvasInteraction() {
-    const canvas = this.canvasRef.nativeElement;
-    
-    canvas.addEventListener('mousemove', (event) => {
-      const rect = canvas.getBoundingClientRect();
-      const x = (event.clientX - rect.left) * (canvas.width / rect.width);
-      const y = (event.clientY - rect.top) * (canvas.height / rect.height);
-      
-      let isHovering = false;
-      this.clickableAreas.forEach((area, index) => {
-        if (x >= area.x && x <= area.x + area.width && 
-            y >= area.y && y <= area.y + area.height) {
-          canvas.style.cursor = 'pointer';
-          canvas.title = area.skill.name;
-          isHovering = true;
-        }
-      });
-      
-      if (!isHovering) {
-        canvas.style.cursor = 'default';
-        canvas.title = 'Skills Visualization';
-      }
-    });
-    
-    canvas.addEventListener('click', (event) => {
-      const rect = canvas.getBoundingClientRect();
-      const x = (event.clientX - rect.left) * (canvas.width / rect.width);
-      const y = (event.clientY - rect.top) * (canvas.height / rect.height);
-      
-      this.clickableAreas.forEach((area) => {
-        if (x >= area.x && x <= area.x + area.width && 
-            y >= area.y && y <= area.y + area.height) {
-          console.log('Clicked skill:', area.skill.svgPath);
-          // You can add more interaction logic here
-        }
-      });
-    });
-  }
-
-  private async drawSkillsCircle() {
-    const canvas = this.canvasRef.nativeElement;
-    const ctx = canvas.getContext('2d');
-    if (!ctx) return;
-
-    const centerX = canvas.width / 2;
-    const centerY = canvas.height / 2;
-    const radius = 140;
-    const iconSize = 50;
-
-    // Clear canvas with transparent background
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-    // Draw skills in a circle
-    const drawPromises = this.allSkills.map(async (skill, index) => {
-      const angle = (index * 2 * Math.PI) / this.allSkills.length - Math.PI / 2;
-      const x = centerX + radius * Math.cos(angle);
-      const y = centerY + radius * Math.sin(angle);
-
-      // Create clickable area
-      const clickableArea = {
-        x: x - iconSize / 2,
-        y: y - iconSize / 2,
-        width: iconSize,
-        height: iconSize,
-        skill: skill
-      };
-
-      // Draw skill icon background with gradient
-      const gradient = ctx.createLinearGradient(x - iconSize/2, y - iconSize/2, x + iconSize/2, y + iconSize/2);
-      gradient.addColorStop(0, '#3b82f6');
-      gradient.addColorStop(1, '#1d4ed8');
-      
-      ctx.beginPath();
-      ctx.arc(x, y, iconSize / 2, 0, 2 * Math.PI);
-      ctx.fillStyle = gradient;
-      ctx.fill();
-      
-      // Add shadow effect
-      ctx.shadowColor = 'rgba(59, 130, 246, 0.4)';
-      ctx.shadowBlur = 8;
-      ctx.shadowOffsetX = 0;
-      ctx.shadowOffsetY = 4;
-      ctx.fill();
-      
-      // Reset shadow
-      ctx.shadowColor = 'transparent';
-      ctx.shadowBlur = 0;
-      ctx.shadowOffsetX = 0;
-      ctx.shadowOffsetY = 0;
-
-      // Load and draw SVG icon
-      await this.loadAndDrawSVG(ctx, skill.svgPath, x, y, 30);
-
-      // Store clickable areas for potential interaction
-      if (!this.clickableAreas) {
-        this.clickableAreas = [];
-      }
-      this.clickableAreas[index] = clickableArea;
-    });
-
-    // Wait for all SVGs to load
-    await Promise.all(drawPromises);
-  }
-
-  private clickableAreas: any[] = [];
-
-  private async loadAndDrawSVG(ctx: CanvasRenderingContext2D, svgPath: string, x: number, y: number, size: number): Promise<void> {
-    try {
-      const response = await fetch(svgPath);
-      const svgText = await response.text();
-      
-      // Create an image from SVG
-      const img = new Image();
-      const svgBlob = new Blob([svgText], { type: 'image/svg+xml' });
-      const url = URL.createObjectURL(svgBlob);
-      
-      img.onload = () => {
-        // Draw the SVG image centered
-        ctx.drawImage(img, x - size/2, y - size/2, size, size);
-        URL.revokeObjectURL(url);
-      };
-      
-      img.src = url;
-    } catch (error) {
-      console.error('Error loading SVG:', error);
-      // Fallback: draw a simple circle
-      ctx.fillStyle = '#ffffff';
-      ctx.beginPath();
-      ctx.arc(x, y, 8, 0, 2 * Math.PI);
-      ctx.fill();
+  getFilteredSkills(): Skill[] {
+    if (this.selectedCategory === 'All') {
+      return this.allSkills;
     }
+    return this.allSkills.filter(skill => skill.category === this.selectedCategory);
   }
 
-  private animateCanvas() {
-    const canvas = this.canvasRef.nativeElement;
-    const ctx = canvas.getContext('2d');
-    if (!ctx) return;
-
-    let rotation = 0;
-    const animate = () => {
-      rotation += 0.01;
-      ctx.save();
-      ctx.translate(canvas.width / 2, canvas.height / 2);
-      ctx.rotate(rotation);
-      ctx.translate(-canvas.width / 2, -canvas.height / 2);
-      
-      this.drawSkillsCircle();
-      
-      ctx.restore();
-      requestAnimationFrame(animate);
-    };
-    
-    // Uncomment to enable rotation animation
-    // animate();
+  selectCategory(category: string) {
+    this.selectedCategory = category;
   }
+
+  getProficiencyColor(proficiency: number): string {
+    if (proficiency >= 90) return 'text-green-400';
+    if (proficiency >= 80) return 'text-blue-400';
+    if (proficiency >= 70) return 'text-yellow-400';
+    return 'text-orange-400';
+  }
+
+  getProficiencyLevel(proficiency: number): string {
+    if (proficiency >= 90) return 'Expert';
+    if (proficiency >= 80) return 'Advanced';
+    if (proficiency >= 70) return 'Intermediate';
+    return 'Beginner';
+  }
+
+
 }
