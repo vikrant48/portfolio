@@ -31,6 +31,7 @@ export class AboutComponent {
     { name: 'Redis', svgPath: 'assets/icons/skills/redis.svg', category: 'Database', proficiency: 70, description: 'In-memory data structure store for caching' },
     { name: 'Java', svgPath: 'assets/icons/skills/java.svg', category: 'Backend', proficiency: 78, description: 'Object-oriented programming language for enterprise solutions' },
     { name: 'Spring Boot', svgPath: 'assets/icons/skills/spring-boot.svg', category: 'Backend', proficiency: 75, description: 'Java framework for building microservices' },
+    { name: 'Kafka', svgPath: 'assets/icons/skills/kafka.svg', category: 'DevOps', proficiency: 72, description: 'Distributed event streaming platform for high-throughput pipelines' },
     { name: 'GitHub', svgPath: 'assets/icons/skills/github.svg', category: 'Tools', proficiency: 90, description: 'Version control and collaborative development platform' },
     { name: 'Docker', svgPath: 'assets/icons/skills/docker.svg', category: 'DevOps', proficiency: 72, description: 'Containerization platform for application deployment' },
     { name: 'Postman', svgPath: 'assets/icons/skills/postman.svg', category: 'Tools', proficiency: 85, description: 'API development and testing tool' },
