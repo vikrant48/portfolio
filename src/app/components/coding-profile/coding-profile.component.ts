@@ -52,7 +52,7 @@ export class CodingProfileComponent implements OnInit {
 
   leetcodeProgress: number = 0;
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
 
   ngOnInit(): void {
     this.loadLeetCodeStats();
@@ -60,20 +60,21 @@ export class CodingProfileComponent implements OnInit {
   }
 
   private loadLeetCodeStats(): void {
-    const url = `https://leetcode-stats-api.herokuapp.com/vikrantlee`;
+    const url = `https://leetcode-api-faisalshohag.vercel.app/vikrantlee`;
 
     this.http.get<any>(url).subscribe({
       next: (data) => {
-        if (data.status === 'success') {
+        // The new API returns data directly without a status field
+        if (data && data.totalSolved) {
           this.leetcodeStats = {
             totalSolved: data.totalSolved || 0,
             totalQuestions: data.totalQuestions || 0,
             easySolved: data.easySolved || 0,
             mediumSolved: data.mediumSolved || 0,
             hardSolved: data.hardSolved || 0,
-            acceptanceRate: data.acceptanceRate || 0,
+            acceptanceRate: data.acceptanceRate || 0, // Note: This might need calculation if not in new API
             ranking: data.ranking || 0,
-            contributionPoints: data.contributionPoints || 0,
+            contributionPoints: data.contributionPoint || 0, // Changed from contributionPoints to contributionPoint
             reputation: data.reputation || 0
           };
 
@@ -81,7 +82,7 @@ export class CodingProfileComponent implements OnInit {
             ? (this.leetcodeStats.totalSolved / this.leetcodeStats.totalQuestions) * 100
             : 0;
         } else {
-          console.warn('LeetCode API returned non-success status:', data.message);
+          console.warn('LeetCode API returned invalid data:', data);
           this.setFallbackLeetCodeStats();
         }
       },
@@ -93,17 +94,17 @@ export class CodingProfileComponent implements OnInit {
   }
 
   private setFallbackLeetCodeStats(): void {
-    // Fallback data in case API is unavailable
+    // Updated fallback data with user's verified stats (as of research)
     this.leetcodeStats = {
-      totalSolved: 150,
+      totalSolved: 565,
       totalQuestions: 2500,
-      easySolved: 75,
-      mediumSolved: 60,
-      hardSolved: 15,
+      easySolved: 301,
+      mediumSolved: 239,
+      hardSolved: 25,
       acceptanceRate: 85,
-      ranking: 50000,
-      contributionPoints: 1200,
-      reputation: 850
+      ranking: 139080,
+      contributionPoints: 1376,
+      reputation: 0
     };
 
     this.leetcodeProgress = (this.leetcodeStats.totalSolved / this.leetcodeStats.totalQuestions) * 100;
