@@ -6,6 +6,7 @@ import { ProjectsComponent } from './components/projects/projects.component';
 import { CertificationsComponent } from './components/certifications/certifications.component';
 import { CodingProfileComponent } from './components/coding-profile/coding-profile.component';
 import { ContactComponent } from './components/contact/contact.component';
+import { AiChatComponent } from './components/ai-chat/ai-chat.component';
 
 @Component({
   selector: 'app-root',
@@ -17,7 +18,8 @@ import { ContactComponent } from './components/contact/contact.component';
     ProjectsComponent,
     // CertificationsComponent,
     CodingProfileComponent,
-    ContactComponent
+    ContactComponent,
+    AiChatComponent
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'

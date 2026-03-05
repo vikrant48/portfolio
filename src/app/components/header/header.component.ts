@@ -1,4 +1,5 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
+import { ConfigService } from '../../services/config.service';
 
 @Component({
   selector: 'app-header',
@@ -21,9 +22,15 @@ export class HeaderComponent implements OnInit, OnDestroy {
   private currentCharIndex = 0;
   private isDeleting = false;
   private typingInterval: any;
+  private resumeUrl = 'assets/resume/vikrant_resume_NITK.pdf';
+
+  constructor(private configService: ConfigService) { }
 
   ngOnInit() {
     this.startTypingAnimation();
+    this.configService.getConfig().subscribe(config => {
+      this.resumeUrl = config.resumeUrl;
+    });
   }
 
   ngOnDestroy() {
@@ -43,8 +50,8 @@ export class HeaderComponent implements OnInit, OnDestroy {
   downloadResume() {
     // Create a temporary link element to trigger download
     const link = document.createElement('a');
-    link.href = 'assets/resume/vikrant_resume_NITK.pdf'; // You'll need to add your resume PDF to assets/resume/
-    link.download = 'Vikrant_NITK_Resume.pdf';
+    link.href = this.resumeUrl;
+    link.download = 'Vikrant_Chauhan_Resume.pdf';
     link.target = '_blank';
     document.body.appendChild(link);
     link.click();
@@ -54,12 +61,12 @@ export class HeaderComponent implements OnInit, OnDestroy {
   private startTypingAnimation() {
     this.typingInterval = setInterval(() => {
       const currentText = this.typingTexts[this.currentTextIndex];
-      
+
       if (!this.isDeleting) {
         // Typing
         this.currentTypingText = currentText.substring(0, this.currentCharIndex + 1);
         this.currentCharIndex++;
-        
+
         if (this.currentCharIndex === currentText.length) {
           // Pause before deleting
           setTimeout(() => {
@@ -70,7 +77,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
         // Deleting
         this.currentTypingText = currentText.substring(0, this.currentCharIndex - 1);
         this.currentCharIndex--;
-        
+
         if (this.currentCharIndex === 0) {
           this.isDeleting = false;
           this.currentTextIndex = (this.currentTextIndex + 1) % this.typingTexts.length;
