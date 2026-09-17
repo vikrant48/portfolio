@@ -6,6 +6,8 @@ import { AiService } from '../../services/ai.service';
 interface Message {
     role: 'user' | 'assistant';
     content: string;
+    provider?: string;
+    statusMessage?: string;
 }
 
 @Component({
@@ -50,7 +52,12 @@ export class AiChatComponent {
         this.aiService.sendMessage(this.messages).subscribe({
             next: (response) => {
                 const assistantMsg = response.choices[0].message.content;
-                this.messages.push({ role: 'assistant', content: assistantMsg });
+                this.messages.push({
+                    role: 'assistant',
+                    content: assistantMsg,
+                    provider: response.provider,
+                    statusMessage: response.statusMessage
+                });
                 this.isLoading = false;
                 this.scrollToBottom();
             },
@@ -58,7 +65,7 @@ export class AiChatComponent {
                 console.error('AI Error:', err);
                 this.messages.push({
                     role: 'assistant',
-                    content: 'Sorry, I encountered an error connecting to Grok. Make sure the proxy server is running.'
+                    content: 'Sorry, I encountered an error connecting to the AI Assistant. Please check your backend connection or API key settings.'
                 });
                 this.isLoading = false;
                 this.scrollToBottom();
