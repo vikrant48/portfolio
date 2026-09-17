@@ -32,7 +32,7 @@
     <div *ngFor="let msg of messages" [ngClass]="msg.role === 'user' ? 'flex justify-end' : 'flex justify-start'">
       <div [ngClass]="msg.role === 'user' ? 'bg-blue-600 text-white' : 'bg-slate-800 text-slate-200'"
         class="max-w-[85%] p-3 rounded-2xl text-sm shadow-sm">
-        <div>{{ msg.content }}</div>
+        <div class="whitespace-pre-wrap leading-relaxed">{{ msg.content }}</div>
         <div *ngIf="msg.statusMessage"
           class="text-[10px] mt-2 pt-1 border-t border-slate-700/50 flex items-center space-x-1 font-mono"
           [ngClass]="msg.provider === 'groq' ? 'text-emerald-400' : 'text-amber-400'">
