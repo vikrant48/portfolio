@@ -10,7 +10,7 @@ export interface AppConfig {
     providedIn: 'root'
 })
 export class ConfigService {
-    private apiUrl = '/api/config';
+    private apiUrl = 'https://portfolio-server-ten-psi.vercel.app/api/config';
     private config$?: Observable<AppConfig>;
 
     constructor(private http: HttpClient) { }

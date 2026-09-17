@@ -12,8 +12,8 @@ import { PortfolioService, Project, Education, Experience } from '../../services
   styleUrl: './projects.component.css'
 })
 export class ProjectsComponent implements OnInit {
-  safeResumeUrl: SafeResourceUrl = '';
   rawResumeUrl: string = '';
+  safeResumeUrl: SafeResourceUrl = '';
   showResumeModal = false;
   projects: Project[] = [];
   education: Education[] = [];
