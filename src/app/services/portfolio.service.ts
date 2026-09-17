@@ -33,6 +33,21 @@ export interface Project {
     gradientClass: string;
     hoverBorderClass: string;
     hoverTitleClass: string;
+    videoUrl?: string;
+    videoPoster?: string;
+    videoType?: string;
+    highlights?: string[];
+}
+
+export interface Experience {
+    id: number;
+    role: string;
+    company: string;
+    location: string;
+    period: string;
+    team: string;
+    achievements: string[];
+    skills: string[];
 }
 
 export interface Education {
@@ -51,6 +66,7 @@ export interface PortfolioData {
     certifications: Certification[];
     projects: Project[];
     education: Education[];
+    experience?: Experience[];
 }
 
 @Injectable({

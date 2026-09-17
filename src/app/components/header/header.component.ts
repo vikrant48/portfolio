@@ -12,24 +12,26 @@ export class HeaderComponent implements OnInit, OnDestroy {
   isMobileMenuOpen = false;
   currentTypingText = '';
   private typingTexts = [
+    'Software Development Engineer',
+    'Spring Boot & Java Developer',
+    'GenAI & RAG Engineer',
     'Full Stack Developer',
-    'Java Developer',
-    'Backend Developer',
-    'Problem Solver',
-    'Tech Enthusiast'
+    'Problem Solver'
   ];
   private currentTextIndex = 0;
   private currentCharIndex = 0;
   private isDeleting = false;
   private typingInterval: any;
-  private resumeUrl = 'assets/resume/vikrant_resume_NITK.pdf';
+  private resumeUrl = '';
 
   constructor(private configService: ConfigService) { }
 
   ngOnInit() {
     this.startTypingAnimation();
     this.configService.getConfig().subscribe(config => {
-      this.resumeUrl = config.resumeUrl;
+      if (config && config.resumeUrl) {
+        this.resumeUrl = config.resumeUrl;
+      }
     });
   }
 

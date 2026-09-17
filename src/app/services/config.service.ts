@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable, shareReplay } from 'rxjs';
+import { Observable, catchError, of, shareReplay } from 'rxjs';
 
 export interface AppConfig {
     resumeUrl: string;
@@ -10,7 +10,7 @@ export interface AppConfig {
     providedIn: 'root'
 })
 export class ConfigService {
-    private apiUrl = 'https://portfolio-server-ten-psi.vercel.app/api/config';
+    private apiUrl = '/api/config';
     private config$?: Observable<AppConfig>;
 
     constructor(private http: HttpClient) { }
@@ -18,6 +18,7 @@ export class ConfigService {
     getConfig(): Observable<AppConfig> {
         if (!this.config$) {
             this.config$ = this.http.get<AppConfig>(this.apiUrl).pipe(
+                catchError(() => of({ resumeUrl: '' })),
                 shareReplay(1)
             );
         }
